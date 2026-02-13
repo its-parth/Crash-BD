@@ -6,7 +6,6 @@ connectDB();
 app.use(express.json());
 app.listen(process.env.PORT, () => {
     console.log('App started on port no 3000');
-    
 });
 
 app.get('/', (req, res) => {
