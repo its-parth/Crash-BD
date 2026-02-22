@@ -3,7 +3,7 @@ const app = express();
 require('dotenv').config();
 const todoRoutes = require('./routes/todoRoutes');
 const connectDB = require('./config/database');
-
+ 
 app.use(express.json());
 
 connectDB();
