@@ -83,10 +83,24 @@ exports.login = async (req, res) => {
             role: userObj.role
         };
         const token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn:"7d"});
+
+        // send normally
+        // return res.status(200).json({
+        //     success: true,
+        //     message: 'Login successfully',
+        //     token
+        // })
+
+        // send in cookie and then sent cookie to authenticate 
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: "Strict",
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        });
         return res.status(200).json({
             success: true,
-            message: 'Login successfully',
-            token
+            message: 'Login successful'
         })
     }catch(err) {
         console.error(err);

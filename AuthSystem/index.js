@@ -3,10 +3,12 @@ const connectDB = require('./config/database');
 require('dotenv').config();
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const cookieParser = require('cookie-parser');
 
 connectDB();
 const app = express();
 
+app.use(cookieParser());
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
